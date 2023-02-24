@@ -4,7 +4,8 @@ This program reads in a CSV file of transactions and spends the given number of 
 
 ## Requirements
 
-- Java
+- Java Language
+- .CSV file provided
 
 ## Usage
 
