@@ -4,7 +4,7 @@ This program reads in a CSV file of transactions and spends the given number of 
 
 ## Requirements
 
-- Java 8 or higher
+- Java
 
 ## Usage
 
