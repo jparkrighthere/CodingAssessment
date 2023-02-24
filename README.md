@@ -18,12 +18,12 @@ Replace `<points>` with the number of points to spend, and `<filename.csv>` with
 
 The CSV file should have the following format:
   
-  payer, points, timestamp
-  DANNON, 1000, 2020-11-02T14:00:00Z
-  UNILEVER, 200, 2020-10-31T11:00:00Z
-  DANNON, -200, 2020-10-31T15:00:00Z
-  MILLER COORS, 10000, 2020-11-01T14:00:00Z
-  DANNON, 300, 2020-10-31T10:00:00Z
+payer, points, timestamp
+DANNON, 1000, 2020-11-02T14:00:00Z
+UNILEVER, 200, 2020-10-31T11:00:00Z
+DANNON, -200, 2020-10-31T15:00:00Z
+MILLER COORS, 10000, 2020-11-01T14:00:00Z
+DANNON, 300, 2020-10-31T10:00:00Z
 
 
 Each row should represent a transaction, with the payer name, the number of points (positive or negative), and the timestamp in ISO 8601 format. The header row should be omitted.
@@ -32,7 +32,7 @@ Each row should represent a transaction, with the payer name, the number of poin
 
 The program will print out the remaining point balances for each payer in the following format:
   
-  {DANNON=1000, UNILEVER=0, MILLER COORS=0}
+{DANNON=1000, UNILEVER=0, MILLER COORS=0}
 
 
 This indicates that DANNON has 1000 points remaining, while UNILEVER and MILLER COORS have 0 points remaining.
