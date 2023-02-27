@@ -87,19 +87,19 @@ public class transactions {
   }
 
   public static void main(String[] args) {
-    if (args.length != 2) {
-      System.out.println("Usage: java transactions <points> <filename.csv>");
-      System.exit(1);
-    }
-    int points = Integer.parseInt(args[0]);
-    String filename = args[1];
+//     if (args.length != 2) {
+//       System.out.println("Usage: java transactions <points> <filename.csv>");
+//       System.exit(1);
+//     }
+//     int points = Integer.parseInt(args[0]);
+//     String filename = args[1];
     try {
-      readFile(filename);
+      readFile("transactions.csv");
     } catch (ParseException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-    pointsSpend(points);
+    pointsSpend(5000);
     System.out.println(pairs);
   }
 
