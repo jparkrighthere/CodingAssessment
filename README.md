@@ -35,7 +35,7 @@ Each row should represent a transaction, with the payer name, the number of poin
 The program will print out the remaining point balances for each payer in the following format:
   
 ```text
-  {DANNON=1000, UNILEVER=0, MILLER COORS=0}
+  {"MILLER COORS"=5300, "UNILEVER"=0, "DANNON"=1000}
 ```
 
 
