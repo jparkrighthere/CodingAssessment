@@ -45,7 +45,7 @@ public class transactions {
   }
 
   public static void readFile(String filename) throws ParseException {
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("\"yyyy-MM-dd'T'HH:mm:ss'Z'\"");
     try (BufferedReader reader = new BufferedReader(new FileReader(filename))){
       String info;
       boolean first=true;
@@ -72,27 +72,31 @@ public class transactions {
 
   public static void pointsSpend(int points) {
     transactionsInfos.sort(Comparator.comparing(TransactionsInfo::getTimestamp));
-    
-    for (TransactionsInfo transactionsinfo : transactionsInfos) {
-      int pointsSpent = Math.min(points, transactionsinfo.getPoints());
-      if (pointsSpent > 0) {
-        points = points - pointsSpent;
-        transactionsinfo.pointsSpend(pointsSpent);
-        pairs.compute(transactionsinfo.getPayer(), (k, v) -> v - pointsSpent);
-      }
-      if (points==0) {
+
+    Map<String, Integer> spentPoints = new HashMap<>();
+    for (TransactionsInfo transaction : transactionsInfos) {
+      if (points == 0) {
         break;
       }
+      int transactionPoints = transaction.getPoints();
+      if (transactionPoints == 0) {
+        continue;
+      }
+      int pointsToSpend = Math.min(points, transactionPoints);
+      String payer = transaction.getPayer();
+      spentPoints.putIfAbsent(payer, 0);
+      spentPoints.compute(payer, (k, v) -> v + pointsToSpend);
+      points -= pointsToSpend;
+      transaction.pointsSpend(pointsToSpend);
+    }
+    for (Map.Entry<String, Integer> entry : spentPoints.entrySet()) {
+      String payer = entry.getKey();
+      int spent = entry.getValue();
+      pairs.compute(payer, (k, v) -> v - spent);
     }
   }
 
   public static void main(String[] args) {
-//     if (args.length != 2) {
-//       System.out.println("Usage: java transactions <points> <filename.csv>");
-//       System.exit(1);
-//     }
-//     int points = Integer.parseInt(args[0]);
-//     String filename = args[1];
     try {
       readFile("transactions.csv");
     } catch (ParseException e) {
