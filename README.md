@@ -44,7 +44,3 @@ This indicates that DANNON has 1000 points remaining, while UNILEVER and MILLER 
 ## Implementation
 
 The program uses a `Map` to keep track of the point balances for each payer, and a `List` to store the transaction information. The program first reads in the CSV file and populates these data structures, then sorts the transactions by timestamp and spends the given number of points according to the rules outlined in the prompt. Finally, the program prints out the remaining point balances for each payer.
-
-## License
-
-Jeonghyeon Park
